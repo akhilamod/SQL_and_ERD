@@ -1,0 +1,18 @@
+
+
+with combined_table as (
+    select * 
+    from Orders o
+    join Customer c
+        on o.customer_id = c.customer_id
+    join Items i
+        on o.item_id = i.item_id
+    )
+
+select 
+    month(order_datetime) as month, 
+    sum(amount) over(
+                partition by month(order_datetime)
+                ) as total_sale
+from combined_table
+where age > 18;
