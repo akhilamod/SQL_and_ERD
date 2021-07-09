@@ -1,0 +1,9 @@
+SELECT 
+	date,
+	AVG(cost) OVER( 
+		Partition by month
+		ORDER BY date
+		ROWS 10 PRECEDING
+		) as 10_day_moving_avg
+FROM 
+	Sales;

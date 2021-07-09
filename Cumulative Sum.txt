@@ -1,0 +1,8 @@
+SELECT 
+	date,
+	SUM(cost) OVER( 
+		Partiion by month
+		ORDER BY date
+		) as cum_cost
+FROM 
+	Sales;
